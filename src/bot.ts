@@ -23,7 +23,7 @@ const bot = new Telegraf(botToken);
 
 function createButton(question: Question) {
     return (option: Option) => Markup.button.callback(option.optionLabel, makeButtonValue(STAGES.ANSWER, [question.id, option.id]));
-};
+}
 
 bot.start(async (ctx: any) => {
     const chatId = ctx.chat.id;
@@ -72,6 +72,8 @@ bot.on('callback_query', async (ctx) => {
 
         case STAGES.AFTER_JOKE:
             await deleteManager.deletePreviousMessages(ctx)
+            void messageManager.registry(ctx, showQuestion(ctx))
+            break;
         case STAGES.SHOW_TOPIC:
             void messageManager.registry(ctx, showQuestion(ctx))
             break;

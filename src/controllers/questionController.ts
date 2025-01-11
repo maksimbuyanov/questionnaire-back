@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import prisma from '../models/prisma';
-import { getCachedQuestions, setCacheForUser } from '../services/questionService';
+import { getCachedQuestions } from '../services/questionService';
 
 // Получение случайного вопроса
 export const getRandomQuestion = async (req: Request, res: Response) => {

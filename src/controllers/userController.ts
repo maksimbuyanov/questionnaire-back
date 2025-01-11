@@ -24,7 +24,7 @@ export const saveUser = async (req: Request, res: Response) => {
     }
 
     try {
-        const newUser = await prisma.user.create({
+        await prisma.user.create({
             data: {
                 telegramId: telegramId.toString(),
                 jobPosition,
