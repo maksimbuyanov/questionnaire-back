@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  telegramId       String   @id
+  jobPosition      String
+  age              Int?
+  experience       Int
+  telegramNickname String?
+  answers          Answer[]
+}
+
+model Segment {
+  id           Int        @id @default(autoincrement())
+  color        String
+  segmentLabel String
+  questions    Question[]
+}
+
+model Question {
+  id             Int      @id @default(autoincrement())
+  segmentId      Int
+  segment        Segment  @relation(fields: [segmentId], references: [id])
+  questionString String
+  answers        Answer[]
+}
+
+model Option {
+  id          Int      @id @default(autoincrement())
+  optionLabel String
+  answers     Answer[]
+}
+
+model Answer {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  questionId Int
+  optionId   Int
+  telegramId String
+  question   Question @relation(fields: [questionId], references: [id])
+  option     Option   @relation(fields: [optionId], references: [id])
+  user       User     @relation(fields: [telegramId], references: [telegramId])
+
+  @@unique([telegramId, questionId]) // Запрещает дублирование ответов на один и тот же вопрос
+}
+
+model Joke {
+  id   Int    @id @default(autoincrement())
+  text String
+}

@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:14          # Используем образ PostgreSQL версии 14
+    container_name: my_postgres # Имя контейнера
+    ports:
+      - "5432:5432"             # Проброс порта (внешний:внутренний)
+    environment:                # Переменные среды для настройки PostgreSQL
+      POSTGRES_USER: myuser      # Имя пользователя
+      POSTGRES_PASSWORD: mypassword # Пароль
+      POSTGRES_DB: mydatabase    # Имя базы данных, которая создается при запуске
+    volumes:                    # Настройка внешнего тома для сохранения данных
+      - ./pgdata:/var/lib/postgresql/data

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                        // Версия ECMAScript, для которой компилируется код
+    "module": "commonjs",                      // Использование CommonJS для модулей
+    "rootDir": "./src",                        // Корневая папка исходного кода
+    "outDir": "./dist",                        // Папка для компилированных файлов
+    "strict": true,                            // Включение всех строгих проверок TypeScript
+    "esModuleInterop": true,                   // Поддержка модулей ES6
+    "forceConsistentCasingInFileNames": true,  // Строгая проверка регистра в именах файлов
+    "skipLibCheck": true                       // Пропуск проверки типов библиотек
+  },
+  "include": [
+    "src/**/*"                                 // Включение всех файлов в папке src
+  ],
+  "exclude": [
+    "node_modules"                             // Исключение папки node_modules
+  ]
+}
